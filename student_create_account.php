@@ -10,29 +10,69 @@
 require_once('config.php');
 ?>
 
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html>
+    
 <head>
-<link rel="stylesheet" href="css/styles.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">  
-<title>CS4342 Test Sign Up</title>
+    <title>CAHSI</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<h1>CREATE ACCOUNT</h1>
-<div id=menu>
-<form action="student_create_account.php" method="post">
-Name: <input type="text" name="legal_name"><br><br>
-Student ID :<input type="text" name="studentId"><br><br>
-Institution :<input type="text" name="institution"><br><br>
-Employment Status :<input type="text" name="employment_Status"><br><br>
-Classification :<input type="text" name="classification"><br><br>
-username: <input type="text" name="username"><br><br>
-password: <input type="password" required pattern = "[A-Za-z0-9]+" maxlength="15" name="password"><br><br>
-Retype password: <input type="password" required pattern = "[A-Za-z0-9]+" maxlength="15" name="Retype_password"><br><br>
-<input name='Submit' type="submit" value="Create">
-</form>
-<br>
-<a href="index.html">Back</a></br>
-</div>
+	<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+					<div class="brand_logo_container">
+						<img src="images/cahsilogo.png" class="brand_logo" alt="Logo">
+					</div>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+					<form action="student_login.php" method="post">
+						<div class="form-group">
+                            <label>Username</label>
+							<input type="text" name="legal_name" class="form-control input_user" >
+						</div>
+						<div class="form-group">
+                            <label>Student ID</label>
+							<input type="text" name="studentId" class="form-control input_pass" >
+						</div>
+						<div class="form-group">
+                            <label>Institution</label>
+							<input type="text" name="institution" class="form-control input_pass" >
+                        </div>
+                        <div class="form-group">
+                            <label>Employment Status</label>
+							<input type="text" name="employment_Status" class="form-control input_pass">
+                        </div>
+                        <div class="from-group">
+                            <label>Classification</label>
+							<input type="text" name="classification" class="form-control input_pass">
+                        </div>
+                        <div class="from-group">
+                            <label>Username</label>
+							<input type="text" name="username" class="form-control input_pass"  >
+                        </div>
+                        <div class="from-group">
+                            <label>Password</label>
+							<input type="password" name="password" class="form-control input_pass"  >
+                        </div>
+                        <div class="from-group">
+                            <label>Retype Password</label>
+							<input type="password" name="Retype_password" class="form-control input_pass"  >
+						</div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <input type="submit" name="Submit" value="Create" class="btn login_btn"/>
+                        </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 <?php
 
 
@@ -68,6 +108,5 @@ if (isset($_POST['Submit'])){
 
 }
 ?>
-
 </body>
 </html>
