@@ -11,7 +11,7 @@ if (!empty($_POST)){
     $input_username = stripslashes($input_username);
     $input_username = mysqli_escape_string($input_username);
 
-    $queryStudent = "SELECT * FROM Student  WHERE username='".$input_username."' AND password='".$input_password."';";
+    $queryStudent = "SELECT * FROM Student WHERE SUsername='".$input_username."' AND Password='".$input_password."';";
     $resultStudent = $conn->query($queryStudent);
 
     if ($resultStudent ->num_rows > 0  ) {
@@ -99,7 +99,7 @@ password: <input type="text" name="password"><br><br>
 		
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+						Don't have an account? <a href="student_create_account.php" class="ml-2">Sign Up</a>
 					</div>
 					<div class="d-flex justify-content-center links">
 						<a href="#">Forgot your password?</a>

@@ -41,16 +41,24 @@ if (isset($_POST['Submit'])){
     $date = isset($_POST['date']) ? $_POST['date'] : " ";
     $type = isset($_POST['type']) ? $_POST['type'] : " ";
     $venue = isset($_POST['venue']) ? $_POST['venue'] : " ";
-    $address = isset($_POST['username']) ? $_POST['address'] : " ";
+    $address = isset($_POST['address']) ? $_POST['address'] : " ";
     $city = isset($_POST['city']) ? $_POST['city'] : " ";
     $state = isset($_POST['state']) ? $_POST['state'] : " ";
     $country = isset($_POST['county']) ? $_POST['country'] : " ";
     $zipCode = isset($_POST['zipCode']) ? $_POST['zipCode'] : " ";
 
     //insert to Event table;
-    $queryUser  = "INSERT INTO Event (event_name, EventId, date, type, venue, address, city, state, country, zipCode)
-                VALUES ('".$event_name."', '".$eventId."', '".$date."', '".$type."', '".$venue."', '".$address."', '".$city."', '".$state."', '".$country."', '".$zipCode."');"; // TODO fix SQL query
+
+    $queryUser  = "INSERT INTO Events (EventID, Event_Location, Time, DATE, Name, type) 
+                VALUES ('".$event_name."', '".$eventId."', '".$date."', '".$type."', '".$venue."', '".$address."', '".$city."', '".$state."', '".$country."', '".$zipCode."');";
     if ($conn->query($queryUser) === TRUE) {
+        echo "New Event created successfully";
+    } else {
+        echo "Error: " . $queryUser . "<br>" . $conn->error;
+    }
+
+    $queryLoc = "INSERT INTO Locations(LocationID, zipCode, Country, State, City, Address) VALUES ('".$venue."', '".$address."', '".$city."', '".$state."', '".$country."', '".$zipCode."');";
+    if ($conn->query($queryLoc) === TRUE) {
         echo "New Event created successfully";
     } else {
         echo "Error: " . $queryUser . "<br>" . $conn->error;
