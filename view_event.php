@@ -60,7 +60,7 @@ require_once('config.php');
         <tbody>
         </tbody>
     </table>
-<h1>View Events</h1>
+
 <table border="0" cellspacing="2" cellpadding="2">
     <tr>
         <td> <font face="Arial">Event Name :</font> </td>
@@ -113,7 +113,7 @@ if ($result = $mysqli->query($query)) {
     }
 ?>
     <br>
-        <a href="index.php">Back</a></br>
+        <a href="index.html">Back</a></br>
     </div>
 </body>
 </html>

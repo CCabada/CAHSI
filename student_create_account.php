@@ -24,7 +24,7 @@ require_once('config.php');
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
-					<form action="index.php" method="post">
+					<form action="index.html" method="post">
 						<div class="form-group">
                             <label>First Name</label>
 							<input type="text" name="first_name" class="form-control input_user" >
@@ -75,6 +75,9 @@ require_once('config.php');
 						</div>
                         <div class="d-flex justify-content-center mt-3 login_container">
                             <input type="submit" name="Submit" value="Create" class="btn login_btn"/>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <input type="cancel" name="Cancel" href="index.php" class="btn login_btn"/>
                         </div>
 					</form>
 				</div>
