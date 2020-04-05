@@ -13,6 +13,7 @@ require_once('config.php');
     <title>View Event</title>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="images/cahsilogo.png" width="150" height="50">
@@ -59,14 +60,33 @@ require_once('config.php');
         <tbody>
         </tbody>
     </table>
+<h1>View Events</h1>
+<table border="0" cellspacing="2" cellpadding="2">
+    <tr>
+        <td> <font face="Arial">Event Name :</font> </td>
+        <td> <font face="Arial">Event ID :</font> </td>
+        <td> <font face= "Arial">Date :</font> </td>
+        <td> <font face="Arial">Type :</font> </td>
+        <td> <font face="Arial">Venue :</font> </td>
+        <td> <font face="Arial">Address :</font> </td>
+        <td> <font face="Arial">City :</font> </td>
+        <td> <font face="Arial">State :</font> </td>
+        <td> <font face="Arial">Country :</font> </td>
+        <td> <font face="Arial">Zip Code :</font> </td>
+
+    </tr>
 <div id=menu>
 <?php
 
 //View to Event table;
 
-$query = "SELECT * FROM Events";
 
-$mysqli = new mysqli("localhost", $username, $password, $database);
+
+    $query = "SELECT * FROM Events";
+
+
+
+$mysqli = new mysqli("localhost", $username, $password, $db);
 if ($result = $mysqli->query($query)) {
         while ($row = $result->fetch_assoc()) {
             $event_name = $row["col1"];
@@ -93,7 +113,7 @@ if ($result = $mysqli->query($query)) {
     }
 ?>
     <br>
-        <a href="index.html">Back</a></br>
+        <a href="index.php">Back</a></br>
     </div>
 </body>
 </html>

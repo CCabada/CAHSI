@@ -72,7 +72,7 @@ password: <input type="text" name="password"><br><br>
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
-					<form action="student_login.php" method="post">
+					<form action="index.php" method="post">
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>

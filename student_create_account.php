@@ -24,7 +24,7 @@ require_once('config.php');
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
-					<form action="student_login.php" method="post">
+					<form action="index.php" method="post">
 						<div class="form-group">
                             <label>First Name</label>
 							<input type="text" name="first_name" class="form-control input_user" >
@@ -115,7 +115,7 @@ if (isset($_POST['Submit'])){
     } else {
         echo "Error: " . $queryUser . "<br>" . $conn->error;
     }
-    echo "<p>Hello " .$legal_name."!<br> Your username is: ".$username."</p>";
+    echo "<p>Hello " .$first_name."!<br> Your username is: ".$username."</p>";
 
 }
 ?>
