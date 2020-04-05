@@ -56,25 +56,10 @@ require_once('config.php');
                 <th scope="col">Country</th>
                 <th scope="col">Zip Code</th>
             </tr>
-        </thead>
+        <!-- </thead>
         <tbody>
         </tbody>
-    </table>
-<h1>View Events</h1>
-<table border="0" cellspacing="2" cellpadding="2">
-    <tr>
-        <td> <font face="Arial">Event Name :</font> </td>
-        <td> <font face="Arial">Event ID :</font> </td>
-        <td> <font face= "Arial">Date :</font> </td>
-        <td> <font face="Arial">Type :</font> </td>
-        <td> <font face="Arial">Venue :</font> </td>
-        <td> <font face="Arial">Address :</font> </td>
-        <td> <font face="Arial">City :</font> </td>
-        <td> <font face="Arial">State :</font> </td>
-        <td> <font face="Arial">Country :</font> </td>
-        <td> <font face="Arial">Zip Code :</font> </td>
-
-    </tr>
+    </table> -->
 <div id=menu>
 <?php
 
