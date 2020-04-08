@@ -42,78 +42,110 @@ require_once('config.php');
     <h1>View Events</h1>
 
     <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Event Name</th>
-                <th scope="col">Event ID</th>
-                <th scope="col">Date</th>
-                <th scope="col">Type</th>
-                <th scope="col">Venue</th>
-                <th scope="col">Address</th>
-                <th scope="col">City</th>
-                <th scope="col">State</th>
-                <th scope="col">Country</th>
-                <th scope="col">Zip Code</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
-<table border="0" cellspacing="2" cellpadding="2">
-    <tr>
-        <td> <font face="Arial">Event Name :</font> </td>
-        <td> <font face="Arial">Event ID :</font> </td>
-        <td> <font face= "Arial">Date :</font> </td>
-        <td> <font face="Arial">Type :</font> </td>
-        <td> <font face="Arial">Venue :</font> </td>
-        <td> <font face="Arial">Address :</font> </td>
-        <td> <font face="Arial">City :</font> </td>
-        <td> <font face="Arial">State :</font> </td>
-        <td> <font face="Arial">Country :</font> </td>
-        <td> <font face="Arial">Zip Code :</font> </td>
-
-    </tr>
-<div id=menu>
+        <tr>
+            <th scope="col">Event Name</th>
+            <th scope="col">Event ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Type</th>
+            <th scope="col">Venue</th>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
+            <th scope="col">Country</th>
+            <th scope="col">Zip Code</th>
+        </tr>
 <?php
 
 //View to Event table;
 
 
 
-    $query = "SELECT * FROM Events";
+$query = "select * from events e join event_located el on e.EventID=el.EventID join location l on el.LocationID=l.LocationID;";
 
 
 
-$mysqli = new mysqli("localhost", $username, $password, $db);
-if ($result = $mysqli->query($query)) {
-        while ($row = $result->fetch_assoc()) {
-            $event_name = $row["col1"];
-            $eventId = $row["col2"];
-            $date = $row["col3"];
-            $type = $row["col4"];
-            $address = $row["col5"];
-            $city = $row["col6"];
-            $country = $row["col7"];
-            $zipCode = $row["col7"];
+// $mysqli = new mysqli("localhost", $username, $password, $db);
+$connection = mysqli_connect('ilinkserver.cs.utep.edu',$username, $password, $db); 
+if(!$connection)
+{
+    echo "Error connecting to mysql"; 
+    echo mysqli_connect_error(); 
+}
+$result = mysqli_query($connection, $query);
+// if ($result = $mysqli->query($query)) {
+    if(mysqli_num_rows($result) > 0){
+        // while ($row = $result->fetch_assoc()) {
+        while ($row = mysqli_fetch_assoc($result)){
+            $event_name = $row["Name"];
+            // echo .event_name; 
+            $eventId = $row["EventID"];
+            $date = $row["Dates"];
+            $type = $row["Type"];
+            $address = $row["Address"];
+            $city = $row["City"];
+            $venue = $row["EventVenue"]; 
+            $country = $row["Country"];
+            $zipCode = $row["ZipCode"];
     
             echo '<tr> 
                       <td>'.$event_name.'</td> 
                       <td>'.$eventId.'</td> 
                       <td>'.$date.'</td> 
                       <td>'.$type.'</td> 
+                      <td>'.$venue.'</td>
                       <td>'.$address.'</td>
                       <td>'.$city.'</td>
-                      <td>'.$country.'</td>
+                      <td>temp</td>
+                      <td>temp</td>
                       <td>'.$zipCode.'</td> 
                   </tr>';
         }
         $result->free();
     }
+else {
+    echo '<tr> <td colspan=10>Data not available</td>'; 
+}
+?>
+    </table>
+<!-- <div id=menu>
+<?php
+
+//View to Event table;
+
+
+
+//     $query = "SELECT * FROM Events";
+
+
+
+// $mysqli = new mysqli("localhost", $username, $password, $db);
+// if ($result = $mysqli->query($query)) {
+//         while ($row = $result->fetch_assoc()) {
+//             $event_name = $row["col1"];
+//             $eventId = $row["col2"];
+//             $date = $row["col3"];
+//             $type = $row["col4"];
+//             $address = $row["col5"];
+//             $city = $row["col6"];
+//             $country = $row["col7"];
+//             $zipCode = $row["col7"];
+    
+//             echo '<tr> 
+//                       <td>'.$event_name.'</td> 
+//                       <td>'.$eventId.'</td> 
+//                       <td>'.$date.'</td> 
+//                       <td>'.$type.'</td> 
+//                       <td>'.$address.'</td>
+//                       <td>'.$city.'</td>
+//                       <td>'.$country.'</td>
+//                       <td>'.$zipCode.'</td> 
+//                   </tr>';
+//         }
+//         $result->free();
+//     }
 ?>
     <br>
-        <a href="index.html">Back</a></br>
-    </div>
+        <a href="index.php">Back</a></br>
+    </div> -->
 </body>
 </html>
