@@ -17,7 +17,7 @@ require_once('config.php');
 <body>
 
 <!-- Navigation bar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="images/cahsilogo.png" width="150" height="50">
         </a>
@@ -26,10 +26,12 @@ require_once('config.php');
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Add Info</a>
+                <a class="nav-item nav-link active" href="view_event.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Create Event</a>
             </div>
         </div>
+
+        <!-- TODO: Figure out how print the user name here... -->
         <div class="pull-right">
             <ul class="nav pull-right">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, User <b class="caret"></b></a>
@@ -43,7 +45,9 @@ require_once('config.php');
         </div>
     </nav>
 
-<h1>CREATE Event</h1>
+    <div class="d-flex justify-content-center">
+        <h1>Create Event</h1>
+    </div>
 <div id=menu>
 
 
@@ -60,51 +64,55 @@ Country: <input type="text" required pattern = "[A-Za-z]+" name="county"><br><br
 Zip Code: <input type="number" required pattern = "[0-9]" maxlength="5" name="zipcode"><br><br>
 <input name='Submit' type="submit" value="Create">
 </form> -->
-    <form style="margin:25px" action="admin_create_event.php" method="post">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label>Event Name</label>
-                <input type="text" class="form-control" placeholder="Event Name" name="event_name">
+    <div class="d-flex justify-content-lg-center">
+        <form action="admin_create_event.php" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Event Name</label>
+                    <input type="text" class="form-control" placeholder="Event Name" name="event_name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Event ID</label>
+                    <input type="text" class="form-control" placeholder="Event ID" name="eventId">
+                </div>
             </div>
-            <div class="form-group col-md-6">
-                <label>Event ID</label>
-                <input type="text" class="form-control" placeholder="Event ID" name="eventId">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>Date</label>
+                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Type</label>
+                    <input type="text" class="form-control" placeholder="Type" name="type">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Venue</label>
+                    <input type="text" class="form-control" placeholder="Venue" name="venue">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label>Date</label>
-            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text">
-        </div>
-        <div class="form-group">
-            <label>Type</label>
-            <input type="text" class="form-control" placeholder="Type" name="type">
-        </div>
-        <div class="form-group">
-            <label>Venue</label>
-            <input type="text" class="form-control" placeholder="Venue" name="venue">
-        </div>
-        <div class="form-group">
-            <label>Address</label>
-            <input type="text" class="form-control" placeholder="Address" name="address">
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label>City</label>
-                <input type="text" class="form-control" placeholder="City" name="city">
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" placeholder="Address" name="address">
             </div>
-            <div class="form-group col-md-4">
-                <label>State</label>
-                <input type="text" class="form-control" placeholder="State" name="state">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>City</label>
+                    <input type="text" class="form-control" placeholder="City" name="city">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>State</label>
+                    <input type="text" class="form-control" placeholder="State" name="state">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Zip</label>
+                    <input type="text" class="form-control" placeholder="Zip" name="zipCode">
+                </div>
             </div>
-            <div class="form-group col-md-2">
-                <label>Zip</label>
-                <input type="text" class="form-control" placeholder="Zip" name="zipCode">
+            <div class="col">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
             </div>
-        </div>
-        <div class="col">
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
-        </div>
-    </form> 
+        </form> 
+    </div>
 
 <br>
 <a href="index.html">Back</a></br>
