@@ -11,7 +11,7 @@ if (!empty($_POST)){
         $input_username = mysqli_escape_string($input_username);
         echo $input_username;
 
-        $queryStudent = "SELECT * FROM Student WHERE SUsername='".$input_username."' AND Password='".$input_password."';";
+        $queryStudent = "SELECT * FROM s20am_team1.Student WHERE SUsername='".$input_username."' AND Password='".$input_password."';";
         $resultStudent = $conn->query($queryStudent);
 
         if ($resultStudent ->num_rows > 0  ) {

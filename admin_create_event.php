@@ -1,5 +1,6 @@
 <?php
 require_once('config.php');
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 ?>
 
 <!DOCTYPE HTML>
@@ -139,7 +140,7 @@ if (isset($_POST['Submit'])){
 
     //insert to Event table;
 
-    $queryUser  = "INSERT INTO Events (EventID, Event_Location, Time, DATE, Name, type) 
+    $queryUser  = "INSERT INTO s20am_team1.Events (EventID, Event_Location, Time, DATE, Name, type) 
                 VALUES ('".$event_name."', '".$eventId."', '".$date."', '".$type."', '".$venue."', '".$address."', '".$city."', '".$state."', '".$country."', '".$zipCode."');";
     if ($conn->query($queryUser) === TRUE) {
         echo "New Event created successfully";
@@ -147,7 +148,7 @@ if (isset($_POST['Submit'])){
         echo "Error: " . $queryUser . "<br>" . $conn->error;
     }
 
-    $queryLoc = "INSERT INTO Locations(LocationID, zipCode, Country, State, City, Address) VALUES ('".$venue."', '".$address."', '".$city."', '".$state."', '".$country."', '".$zipCode."');";
+    $queryLoc = "INSERT INTO s20am_team1.Locations(LocationID, zipCode, Country, State, City, Address) VALUES ('".$venue."', '".$address."', '".$city."', '".$state."', '".$country."', '".$zipCode."');";
     if ($conn->query($queryLoc) === TRUE) {
         echo "New Event created successfully";
     } else {
