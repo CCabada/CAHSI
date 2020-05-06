@@ -29,18 +29,6 @@ $user = $_SESSION['student_user']
                 <a class="nav-item nav-link" href="#">Add Info</a>
             </div>
         </div>
-        <div class="pull-right">
-            <ul class="nav pull-right">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome,  <?php echo $_SESSION['student_user']; ?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="student_profile.php"><i class="icon-cog"></i>Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
     <div class="pull-right">
         <ul class="nav pull-right">
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php
@@ -55,22 +43,23 @@ $user = $_SESSION['student_user']
         </ul>
     </div>
 </nav>
-    <h1>View Events</h1>
-
-    <table id="events" class="table table-striped">
-        <tr>
-            <th scope="col">Event Name</th>
-            <th scope="col">Event ID</th>
-            <th scope="col">Date</th>
-            <th scope="col">Type</th>
-            <th scope="col">Venue</th>
-            <th scope="col">Address</th>
-            <th scope="col">City</th>
-            <th scope="col">State</th>
-            <th scope="col">Country</th>
-            <th scope="col">Zip Code</th>
-            <th scope="col">Check In</th>
-        </tr>
+<div class="container emp-profile">
+    <form method="post">
+        <h1>View Events</h1>
+        <table id="events" class="table table-striped">
+            <tr>
+                <th scope="col">Event Name</th>
+                <th scope="col">Event ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Type</th>
+                <th scope="col">Venue</th>
+                <th scope="col">Address</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">Country</th>
+                <th scope="col">Zip Code</th>
+                <th scope="col">Check In</th>
+            </tr>
 <?php
 //View to Event table;
 $user = _SESSION[$username];
@@ -124,6 +113,8 @@ else {
 ?>
     </table>
     <button type="button" class="btn btn-primary" onclick="submit()">Submit</button>
+</form>
+</div>
     <script>
         function submit() {
             var table = document.getElementById("events"); 
