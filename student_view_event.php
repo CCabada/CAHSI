@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('config.php');
+$user = $_SESSION['student_user']
 ?>
 
 <!DOCTYPE HTML>
@@ -16,31 +17,34 @@ require_once('config.php');
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img src="images/cahsilogo.png" width="150" height="50">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Add Info</a>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="images/cahsilogo.png" width="150" height="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="student_view_event.php">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="student_report_offers.php">Report Offers</a>
+
         </div>
-        <div class="pull-right">
-            <ul class="nav pull-right">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome,'.$user.' <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    </div>
+    <div class="pull-right">
+        <ul class="nav pull-right">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php
+                    echo $user;
+                    ?><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
     <h1>View Events</h1>
 
     <table id="events" class="table table-striped">

@@ -1,6 +1,7 @@
 <?php
+session_start();
 require_once('config.php');
-if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+$admin = $_SESSION['admin_user']
 ?>
 
 <!DOCTYPE HTML>
@@ -30,20 +31,21 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
             <a class="nav-item nav-link" href="admin_student_table.php">Students</a>
 
         </div>
-
-        <!-- TODO: Figure out how print the user name here... -->
-        <div class="pull-right">
-            <ul class="nav pull-right">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, User <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    </div>
+    <div class="pull-right">
+        <ul class="nav pull-right">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome,<?php
+                    echo $admin;
+                    ?><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
 
     <div class="d-flex justify-content-center">
         <h1>Create Event</h1>

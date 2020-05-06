@@ -15,7 +15,7 @@ if (!empty($_POST)){
 
         if ($resultAdmin->num_rows > 0  ) {
             //if there is a result, that means that the user was found in the database
-            $_SESSION['Admin_user'] = $input_username;
+            $_SESSION['admin_user'] = $input_username;
             $_SESSION['logged_in'] = true;
             header("Location: admin_view_event.php");
         } else {
