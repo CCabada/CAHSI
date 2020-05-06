@@ -10,6 +10,12 @@ if ($result->num_rows <= 0) {
 }
 
 $row = $result->fetch_assoc();
+
+if (!empty($_POST)){
+    if (isset($_POST['Submit'])){
+        header("Location: student_edit_profile.php"); 
+    }
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -173,7 +179,7 @@ $row = $result->fetch_assoc();
                 </div>
             </div>
             <div class="col-md-2">
-                <input type="submit" href="/student_edit_profile.php" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                <input type="submit" class="profile-edit-btn" name="Submit" value="Edit Profile"/>
             </div>
         </div>
         <div class="row">
