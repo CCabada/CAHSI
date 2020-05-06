@@ -1,4 +1,3 @@
-SET PASSWORD FOR ccabada2@ilinkserver.cs.utep = PASSWORD (S20am_team1);
 
 CREATE TABLE Participant (
 Username CHAR(50) NOT NULL,
@@ -271,6 +270,8 @@ INSERT INTO CheckIn(SID, EventID) VALUES (1,1);
 INSERT INTO CheckIn(SID, EventID) VALUES (2,2);
 INSERT INTO CheckIn(SID, EventID) VALUES (3,3);
 
+INSERT INTO CheckIn(SID, EventID) VALUES (1,3);
+
 INSERT INTO Events (AUsername, Dates, Name, Type) VALUES ( 'admin1',  '2020-08-25', 'ACM Workshop', 'Workshop');
 INSERT INTO Events (AUsername, Dates, Name, Type) VALUES ( 'admin1', '2020-08-25', 'IEEE Workshop', 'Workshop');
 INSERT INTO Events (AUsername, Dates, Name, Type) VALUES ( 'admin1', '2020-08-25', 'ACM-W Workshop', 'Workshop');
@@ -355,18 +356,3 @@ Drop VIEW FemaleOffers;
 SELECT COUNT(*) FROM STUDENT JOIN OFFERS USING (SUSERNAME) WHERE GENDER = 'Female' AND company = 'Google';
 
 Drop view FemaleOffers;
-
-
-SET PASSWORD [FOR ccabada2] auth_option
-    REPLACE 'FBUsukuecs1!'
-
-ALTER USER 'ccabada2'@'ilinks.cs.utep.edu:33060'
-    IDENTIFIED BY 'FBUsukiecs1!'
-    REPLACE 'auth_string';
-
-ALTER USER 'ccabada2'@'ilinks.cs.utep.edu:33060'
-    DISCARD OLD PASSWORD;
-
-UPDATE ccabada2 IDENTIFIED BY ‘FBUsukiecs1!’ REPLACE ‘Team1AM!’;
-
-SET PASSWORD='Team1AM' REPLACE 'FBUsukiecs1!';
