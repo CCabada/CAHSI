@@ -39,9 +39,9 @@ $admin = $_SESSION['admin_user']
                     echo $admin;
                     ?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Classes/cs4342/Team1_am/admin_profile.php"><i class="icon-cog"></i>Profile</a></li>
+                    <li><a href="admin_profile.php"><i class="icon-cog"></i>Profile</a></li>
                     <li class="divider"></li>
-                    <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
+                    <li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>

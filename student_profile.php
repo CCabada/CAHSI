@@ -65,7 +65,7 @@ if (!empty($_POST)){
                 <ul class="dropdown-menu">
                     <li><a href="student_profile.php"><i class="icon-cog"></i>Profile</a></li>
                     <li class="divider"></li>
-                    <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
+                    <li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>
