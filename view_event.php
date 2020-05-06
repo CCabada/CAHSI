@@ -41,7 +41,7 @@ require_once('config.php');
     </nav>
     <h1>View Events</h1>
 
-    <table class="table table-striped">
+    <table id="events" class="table table-striped">
         <tr>
             <th scope="col">Event Name</th>
             <th scope="col">Event ID</th>
@@ -53,31 +53,26 @@ require_once('config.php');
             <th scope="col">State</th>
             <th scope="col">Country</th>
             <th scope="col">Zip Code</th>
+            <th scope="col">Check In</th>
         </tr>
 <?php
 
 //View to Event table;
-
-
-
 $query = "select * from events e join event_located el on e.EventID=el.EventID join location l on el.LocationID=l.LocationID;";
 
-
-
-// $mysqli = new mysqli("localhost", $username, $password, $db);
 $connection = mysqli_connect('ilinkserver.cs.utep.edu',$username, $password, $db); 
 if(!$connection)
 {
     echo "Error connecting to mysql"; 
     echo mysqli_connect_error(); 
 }
+
 $result = mysqli_query($connection, $query);
-// if ($result = $mysqli->query($query)) {
     if(mysqli_num_rows($result) > 0){
-        // while ($row = $result->fetch_assoc()) {
+        $index = 0; 
         while ($row = mysqli_fetch_assoc($result)){
             $event_name = $row["Name"];
-            // echo .event_name; 
+            // echo .event_name;
             $eventId = $row["EventID"];
             $date = $row["Dates"];
             $type = $row["Type"];
@@ -86,7 +81,7 @@ $result = mysqli_query($connection, $query);
             $venue = $row["EventVenue"]; 
             $country = $row["Country"];
             $zipCode = $row["ZipCode"];
-    
+
             echo '<tr> 
                       <td>'.$event_name.'</td> 
                       <td>'.$eventId.'</td> 
@@ -98,6 +93,11 @@ $result = mysqli_query($connection, $query);
                       <td>temp</td>
                       <td>temp</td>
                       <td>'.$zipCode.'</td> 
+                      <td>
+                        <div class="custom-contgrol custom-checkbox">
+                            <input  type="checkbox" class="custmon-control-input">
+                        </div>
+                        </td>
                   </tr>';
         }
         $result->free();
@@ -107,45 +107,23 @@ else {
 }
 ?>
     </table>
-<!-- <div id=menu>
-<?php
+    <button type="button" class="btn btn-primary" onclick="submit()">Submit</button>
+    <script>
+        function submit() {
+            var table = document.getElementById("events"); 
 
-//View to Event table;
-
-
-
-//     $query = "SELECT * FROM Events";
-
-
-
-// $mysqli = new mysqli("localhost", $username, $password, $db);
-// if ($result = $mysqli->query($query)) {
-//         while ($row = $result->fetch_assoc()) {
-//             $event_name = $row["col1"];
-//             $eventId = $row["col2"];
-//             $date = $row["col3"];
-//             $type = $row["col4"];
-//             $address = $row["col5"];
-//             $city = $row["col6"];
-//             $country = $row["col7"];
-//             $zipCode = $row["col7"];
-    
-//             echo '<tr> 
-//                       <td>'.$event_name.'</td> 
-//                       <td>'.$eventId.'</td> 
-//                       <td>'.$date.'</td> 
-//                       <td>'.$type.'</td> 
-//                       <td>'.$address.'</td>
-//                       <td>'.$city.'</td>
-//                       <td>'.$country.'</td>
-//                       <td>'.$zipCode.'</td> 
-//                   </tr>';
-//         }
-//         $result->free();
-//     }
-?>
-    <br>
-        <a href="index.php">Back</a></br>
-    </div> -->
+            for (var i = 0; i < table.rows.length; i++) {
+                var objcell = table.rows.item(i).cells; 
+                var input = objcell[10].getElementsByClassName("custmon-control-input"); 
+                for (var j = 0; j < input.length; j++) {
+                    if (input[j]) { // why is this check here? becuase the first element is the header of the table 
+                        if (input[j].checked) {
+                            alert("Win"); 
+                        }
+                    }
+                }
+            }
+        }
+    </script> 
 </body>
 </html>
