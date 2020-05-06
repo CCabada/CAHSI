@@ -7,29 +7,28 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 <head>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>Create Event</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>View Event</title>
 </head>
 <body>
 
-<!-- Navigation bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img src="images/cahsilogo.png" width="150" height="50">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="view_event.php">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Create Event</a>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="images/cahsilogo.png" width="150" height="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="admin_view_event.php">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="admin_create_event.php">Create Events</a>
+            <a class="nav-item nav-link" href="admin_student_table.php">Students</a>
+
         </div>
 
         <!-- TODO: Figure out how print the user name here... -->
@@ -39,7 +38,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
                         <li class="divider"></li>
-                        <li><a href="/auth/logout"><i class="icon-off"></i> Logout</a></li>
+                        <li><a href="/index.html" method="post"><i class="icon-off"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -50,21 +49,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
         <h1>Create Event</h1>
     </div>
 <div id=menu>
-
-
-<!-- <form action="admin_create_event.php" method="post">
-Event Name : <input type="text" name="event_name"><br><br>
-Event ID :<input type="text" name="studentId"><br><br>
-Date :<input type="text" name="institution"><br><br>
-Type :<input type="text" name="employment_Status"><br><br>
-Venue :<input type="text" name="classification"><br><br>
-Address : <input type="text" name="username"><br><br>
-City : <input type="text " required pattern = "[A-Za-z]+"  name="city"><br><br>
-State: <input type="text" required pattern = "[A-Za-z]+"  name="state"><br><br>
-Country: <input type="text" required pattern = "[A-Za-z]+" name="county"><br><br>
-Zip Code: <input type="number" required pattern = "[0-9]" maxlength="5" name="zipcode"><br><br>
-<input name='Submit' type="submit" value="Create">
-</form> -->
     <div class="d-flex justify-content-lg-center">
         <form action="admin_create_event.php" method="post">
             <div class="form-row">
@@ -116,7 +100,7 @@ Zip Code: <input type="number" required pattern = "[0-9]" maxlength="5" name="zi
     </div>
 
 <br>
-<a href="index.html">Back</a></br>
+<a href="admin_view_event.php">Back</a></br>
 </div>
 <?php
 
@@ -154,6 +138,10 @@ if (isset($_POST['Submit'])){
     } else {
         echo "Error: " . $queryUser . "<br>" . $conn->error;
     }
+}
+if (isset($_POST['logout'])) {
+    session_destroy();
+    exit();
 }
 ?>
 

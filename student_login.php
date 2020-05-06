@@ -17,7 +17,7 @@ if (!empty($_POST)){
             //if there is a result, that means that the user was found in the database
             $_SESSION['student_user'] = $input_username;
             $_SESSION['logged_in'] = true;
-            header("Location: view_event.php");
+            header("Location: student_view_event.php");
         } else {
             echo "<script type='text/javascript'>alert('User Not Found');</script>";
         }
