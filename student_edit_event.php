@@ -1,8 +1,13 @@
 <?php
 session_start();
 require_once('config.php');
-$user = $_SESSION['student_user'];
-
+$student = $_SESSION['student_user'];
+$connection = mysqli_connect($host,$username, $password, $db);
+if(!$connection)
+{
+    echo "Error connecting to mysql";
+    echo mysqli_connect_error();
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -29,7 +34,7 @@ $user = $_SESSION['student_user'];
             <a class="nav-item nav-link active" href="student_view_event.php">Home </a>
             <a class="nav-item nav-link" href="student_report_offers.php">Report Offers<span class="sr-only">(current)</span></a>
             <?php
-            $advoc = "SELECT Advocate from s20am_team1.student where SUsername = '.$user.' and Advocate = 1;";
+            $advoc = "SELECT Advocate from s20am_team1.student where SUsername = '".$student."'and Advocate = 1;";
 
             $connection = mysqli_connect($host,$username, $password, $db);
             if(!$connection)
@@ -39,9 +44,9 @@ $user = $_SESSION['student_user'];
             }
 
             $result = mysqli_query($connection, $advoc);
-            if($result->num_rows = 1) {
-                echo '<a class="nav-item nav-link active" href="student_create_event.php">Create Event </a>';
-                echo '<a class="nav-item nav-link active" href="student_edit_event.php">Edit Event</a>';
+            if($result->num_rows == 1) {
+                echo '<a class="nav-item nav-link" href="student_create_event.php">Create Event </a>';
+                echo '<a class="nav-item nav-link" href="student_edit_event.php">Edit Event</a>';
             }
             ?>
 
@@ -50,7 +55,7 @@ $user = $_SESSION['student_user'];
     <div class="pull-right">
         <ul class="nav pull-right">
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php
-                    echo $user;
+                    echo $student;
                     ?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="/Classes/cs4342/Team1_am/student_profile.php"><i class="icon-cog"></i>Profile</a></li>

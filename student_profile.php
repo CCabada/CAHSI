@@ -42,7 +42,7 @@ if (!empty($_POST)){
             <a class="nav-item nav-link active" href="student_view_event.php">Home <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="student_report_offers.php">Report Offers</a>
             <?php
-            $advoc = "SELECT Advocate from s20am_team1.student where SUsername = '.$user.'and Advocate = 1;";
+            $advoc = "SELECT Advocate from s20am_team1.student where SUsername = '".$student."'and Advocate = 1;";
 
             $connection = mysqli_connect($host,$username, $password, $db);
             if(!$connection)
@@ -52,16 +52,16 @@ if (!empty($_POST)){
             }
 
             $result = mysqli_query($connection, $advoc);
-            if($result->num_rows == 1 ) {
-                echo '<a class="nav-item nav-link active" href="student_create_event.php">Create Event </a>';
-                echo '<a class="nav-item nav-link active" href="student_edit_event.php">Edit Event</a>';
+            if($result->num_rows == 1) {
+                echo '<a class="nav-item nav-link" href="student_create_event.php">Create Event </a>';
+                echo '<a class="nav-item nav-link" href="student_edit_event.php">Edit Event</a>';
             }
             ?>
         </div>
     </div>
     <div class="pull-right">
         <ul class="nav pull-right">
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php echo $_SESSION['student_user']; ?><b class="caret"></b></a>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php echo $student; ?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="student_profile.php"><i class="icon-cog"></i>Profile</a></li>
                     <li class="divider"></li>
