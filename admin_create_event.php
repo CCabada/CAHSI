@@ -30,77 +30,109 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
             <a class="nav-item nav-link" href="admin_student_table.php">Students</a>
 
         </div>
+    </div>
+    <div class="pull-right">
+        <ul class="nav pull-right">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php echo $_SESSION['student_user']; ?><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-        <!-- TODO: Figure out how print the user name here... -->
-        <div class="pull-right">
-            <ul class="nav pull-right">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, User <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <h1>Create Event</h1>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Event Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Event Name" name="event_name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Event ID</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Event ID" name="eventId">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Date</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Type</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Type" name="type">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Venue</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Venue" name="venue">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Address</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Address" name="address">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>City</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="City" name="city">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>State</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="State" name="state">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Zip</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Zip" name="zipCode">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" href="student_edit_profile.php" class="profile-edit-btn" name="btnAddMore" value="Submit"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
-
-    <div class="d-flex justify-content-center">
-        <h1>Create Event</h1>
-    </div>
-<div id=menu>
-    <div class="d-flex justify-content-lg-center">
-        <form action="admin_create_event.php" method="post">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Event Name</label>
-                    <input type="text" class="form-control" placeholder="Event Name" name="event_name">
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Event ID</label>
-                    <input type="text" class="form-control" placeholder="Event ID" name="eventId">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label>Date</label>
-                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text">
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Type</label>
-                    <input type="text" class="form-control" placeholder="Type" name="type">
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Venue</label>
-                    <input type="text" class="form-control" placeholder="Venue" name="venue">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Address</label>
-                <input type="text" class="form-control" placeholder="Address" name="address">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>City</label>
-                    <input type="text" class="form-control" placeholder="City" name="city">
-                </div>
-                <div class="form-group col-md-4">
-                    <label>State</label>
-                    <input type="text" class="form-control" placeholder="State" name="state">
-                </div>
-                <div class="form-group col-md-2">
-                    <label>Zip</label>
-                    <input type="text" class="form-control" placeholder="Zip" name="zipCode">
-                </div>
-            </div>
-            <div class="col">
-                <button type="submit" class="btn btn-primary mb-2">Submit</button>
-            </div>
-        </form> 
-    </div>
-
-<br>
-<a href="admin_view_event.php">Back</a></br>
+    </form>           
 </div>
 <?php
 
