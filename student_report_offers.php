@@ -45,3 +45,63 @@ $user = $_SESSION['student_user']
         </ul>
     </div>
 </nav>
+
+<div class="d-flex justify-content-center form_container">
+    <form action="student_report_offers.php" method="post">
+        <div class="form-group">
+            <label>Type</label>
+            <input type="text" name="type" class="form-control input_user" >
+        </div>
+        <div class="form-group">
+            <label>Date Received</label>
+            <input type="date" name="Date Received" class="form-control input_user" >
+        </div>
+        <div class="from-group">
+            <label>Interview</label>
+            <input type="text" name="Interview" class="form-control input_pass">
+        </div>
+        <div class="form-group">
+            <label>Company</label>
+            <input type="text" name="Company" class="form-control input_pass" >
+        </div>
+        <div class="form-group">
+            <label>Response</label>
+            <input type="text" name="Response" class="form-control input_pass">
+        </div>
+        <div class="d-flex justify-content-center mt-3 login_container">
+            <input type="submit" name="Submit" value="Submit" class="btn login_btn"/>
+        </div>
+        <div class="d-flex justify-content-center mt-3 login_container">
+            <button name="Cancel" href="student_view_event.php" class="btn login_btn">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<?php
+
+
+if (isset($_POST['Submit'])){
+
+    /**
+     * Grab information from the form submission and store values into variables.
+     */
+    $type = isset($_POST['type']) ? $_POST['type'] : " ";
+    $Date_Recieved = isset($_POST['last_name']) ? $_POST['last_name'] : " ";
+    $Interview = isset($_POST['Interview']) ? $_POST['Interview'] : " ";
+    $Company = isset($_POST['Company']) ? $_POST['Company'] : " ";
+    $Response = isset($_POST['Response']) ? $_POST['Response'] : " ";
+
+    //insert to student table;
+    $queryUser  = "INSERT INTO s20am_team1.offers(SUsername, type,Date_Recieved,Interview,Company, Response) VALUES
+                VALUES ('".$user."', '".$type."', '".$Date_Recieved."','".$Interview."',  '".$Company."',  '".$Response."');";
+    if ($conn->query($queryUser) === TRUE) {
+        // echo "New record created successfully";
+    } else {
+        echo "Error: " . $queryUser . "<br>" . $conn->error;
+    }
+
+}
+?>
+    </body>
+</html>
+

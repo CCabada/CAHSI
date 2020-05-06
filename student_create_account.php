@@ -23,7 +23,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 					<div class="brand_logo_container">
 						<img src="images/cahsilogo.png" class="brand_logo" alt="Logo">
 					</div>
-				</div>
+            </div>
 				<div class="d-flex justify-content-center form_container">
 					<form action="student_login.php" method="post">
 						<div class="form-group">
