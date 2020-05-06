@@ -28,6 +28,7 @@ $admin = $_SESSION['admin_user']
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="admin_view_event.php">Home </a>
                 <a class="nav-item nav-link" href="admin_create_event.php">Create Events</a>
+                <a class="nav-item nav-link" href="admin_edit_event.php">Edit Events</a>
                 <a class="nav-item nav-link" href="admin_student_table.php">Students<span class="sr-only">(current)</span></a>
 
             </div>
@@ -46,21 +47,22 @@ $admin = $_SESSION['admin_user']
             </ul>
         </div>
     </nav>
-    <h1>View Events</h1>
-
-    <table id="events" class="table table-striped">
-        <tr>
-            <th scope="col">Student Username</th>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Advocate</th>
-            <th scope="col">Classification</th>
-            <th scope="col">Ethnicity</th>
-            <th scope="col">Employment Status</th>
-            <th scope="col">Nationality</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Age</th>
-        </tr>
+    <div class="container emp-profile">
+        <h1>View Students</h1>
+        <table id="events" class="table table-striped">
+            <tr>
+                <th scope="col">Student Username</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Advocate</th>
+                <th scope="col">Classification</th>
+                <th scope="col">Ethnicity</th>
+                <th scope="col">Employment Status</th>
+                <th scope="col">Nationality</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Age</th>
+            </tr>
+        </table>
         <?php
         //View to Event table;
 

@@ -28,6 +28,7 @@ $admin = $_SESSION['admin_user']
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="admin_view_event.php">Home </a>
             <a class="nav-item nav-link" href="admin_create_event.php">Create Events<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="admin_edit_event.php">Edit Events</a>
             <a class="nav-item nav-link" href="admin_student_table.php">Students</a>
 
         </div>
@@ -62,14 +63,6 @@ $admin = $_SESSION['admin_user']
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="Event Name" name="event_name">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Event ID</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Event ID" name="eventId">
                             </div>
                         </div>
                         <div class="row">

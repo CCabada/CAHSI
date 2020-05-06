@@ -25,8 +25,8 @@ $user = $_SESSION['student_user']
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Add Info</a>
+                <a class="nav-item nav-link active" href="student_view_event.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="student_report_offers.php">Report Offers</a>
             </div>
         </div>
         <div class="pull-right">
