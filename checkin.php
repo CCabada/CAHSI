@@ -20,10 +20,9 @@ if (isset($_POST['eventId'])) {
         // $insert_query  = "INSERT INTO s20am_team1.checkin (EventID, SID) values (?, ?);";
         $insert_checkin = "CALL registerCHECKIN(?,?)"; 
         $stmt = $conn->prepare($insert_checkin); 
-        $stmt->bind_param("ii", $event_id, $sid); 
-        $stmt->execute(); 
-        $result = $stmt->get_result(); 
-        if ($result) {
+        $stmt->bind_param("ii", $sid, $event_id); 
+
+        if ($stmt->execute()) {
             $return['msg'] = "Registered to event";
             header('Content-type: application/json'); 
             die(json_encode($return)); 
