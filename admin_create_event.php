@@ -6,6 +6,103 @@ $admin = $_SESSION['admin_user']
 
 <!DOCTYPE HTML>
 <head>
+    <style>
+        body{
+            background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        }
+        .emp-profile{
+            padding: 3%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            border-radius: 0.5rem;
+            background: #fff;
+        }
+        .profile-img{
+            text-align: center;
+        }
+        .profile-img img{
+            width: 70%;
+            height: 100%;
+        }
+        .profile-img .file {
+            position: relative;
+            overflow: hidden;
+            margin-top: -20%;
+            width: 70%;
+            border: none;
+            border-radius: 0;
+            font-size: 15px;
+            background: #212529b8;
+        }
+        .profile-img .file input {
+            position: absolute;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+        .profile-head h5{
+            color: #333;
+        }
+        .profile-head h6{
+            color: #0062cc;
+        }
+        .profile-edit-btn{
+            border: none;
+            border-radius: 1.5rem;
+            width: 70%;
+            padding: 2%;
+            font-weight: 600;
+            color: #6c757d;
+            cursor: pointer;
+        }
+        .proile-rating{
+            font-size: 12px;
+            color: #818182;
+            margin-top: 5%;
+        }
+        .proile-rating span{
+            color: #495057;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .profile-head .nav-tabs{
+            margin-bottom:5%;
+        }
+        .profile-head .nav-tabs .nav-link{
+            font-weight:600;
+            border: none;
+        }
+        .profile-head .nav-tabs .nav-link.active{
+            border: none;
+            border-bottom:2px solid #0062cc;
+        }
+        .profile-work{
+            padding: 14%;
+            margin-top: -15%;
+        }
+        .profile-work p{
+            font-size: 12px;
+            color: #818182;
+            font-weight: 600;
+            margin-top: 10%;
+        }
+        .profile-work a{
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .profile-work ul{
+            list-style: none;
+        }
+        .profile-tab label{
+            font-weight: 600;
+        }
+        .profile-tab p{
+            font-weight: 600;
+            color: #0062cc;
+        }
+    </style>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -47,62 +144,95 @@ $admin = $_SESSION['admin_user']
     </div>
 </nav>
 
-    <div class="d-flex justify-content-center">
-        <h1>Create Event</h1>
-    </div>
-<div id=menu>
-    <div class="d-flex justify-content-lg-center">
-        <form action="admin_create_event.php" method="post">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Event Name</label>
-                    <input type="text" class="form-control" placeholder="Event Name" name="event_name">
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Event ID</label>
-                    <input type="text" class="form-control" placeholder="Event ID" name="eventId">
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <h1>Create Event</h1>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Event Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Event Name" name="event_name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Event ID</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Event ID" name="eventId">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Date</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Type</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Type" name="type">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Venue</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Venue" name="venue">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Address</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Address" name="address">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>City</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="City" name="city">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>State</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="State" name="state">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Zip</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Zip" name="zipCode">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" href="student_edit_profile.php" class="profile-edit-btn" name="btnAddMore" value="Submit"/>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label>Date</label>
-                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text">
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Type</label>
-                    <input type="text" class="form-control" placeholder="Type" name="type">
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Venue</label>
-                    <input type="text" class="form-control" placeholder="Venue" name="venue">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Address</label>
-                <input type="text" class="form-control" placeholder="Address" name="address">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>City</label>
-                    <input type="text" class="form-control" placeholder="City" name="city">
-                </div>
-                <div class="form-group col-md-4">
-                    <label>State</label>
-                    <input type="text" class="form-control" placeholder="State" name="state">
-                </div>
-                <div class="form-group col-md-2">
-                    <label>Zip</label>
-                    <input type="text" class="form-control" placeholder="Zip" name="zipCode">
-                </div>
-            </div>
-            <div class="col">
-                <button type="submit" class="btn btn-primary mb-2">Submit</button>
-            </div>
-        </form> 
-    </div>
-
-<br>
-<a href="admin_view_event.php">Back</a></br>
+        </div>
+    </form>           
 </div>
 <?php
 
