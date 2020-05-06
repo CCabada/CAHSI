@@ -46,6 +46,8 @@ $admin = $_SESSION['admin_user']
         </ul>
     </div>
 </nav>
+<div class="container emp-profile">
+    <form method="post">
 <h1>View Events</h1>
 
 <form action="admin_view_event.php" method="POST">
@@ -115,6 +117,9 @@ $admin = $_SESSION['admin_user']
         echo '<tr> <td colspan=10>Data not available</td>';
     }
     ?>
+</table>
+</form>
+</div>
 
 </body>
 </html>
