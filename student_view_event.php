@@ -41,19 +41,7 @@ $user = $_SESSION['student_user']
             </ul>
         </div>
     </div>
-    <div class="pull-right">
-        <ul class="nav pull-right">
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php
-                    echo $user;
-                    ?><b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/Classes/cs4342/Team1_am/student_profile.php"><i class="icon-cog"></i>Profile</a></li>
-                    <li class="divider"></li>
-                    <li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+
 </nav>
     <h1>View Events</h1>
 

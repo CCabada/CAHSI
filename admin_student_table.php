@@ -34,7 +34,7 @@ $admin = $_SESSION['admin_user']
         </div>
         <div class="pull-right">
             <ul class="nav pull-right">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome,<?php
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php
                         echo $admin;
                         ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
