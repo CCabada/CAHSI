@@ -121,11 +121,13 @@ else {
                         if (input[j].checked) {
                             var eventId = objcell[1].innerText; 
                             $.ajax({
-                                data: 'eventId='+eventId, 
+                                data: {'eventId=': eventId}, 
                                 url: 'checkin.php', 
                                 method: 'POST', 
                                 success: function (msg) {
-                                    alert(msg); 
+                                    // var jsonmsg = JSON.parse(msg); 
+                                    alert(msg['msg']); 
+                                    // alert(msg['user']); 
                                 }
                             }); 
                         }
