@@ -35,6 +35,7 @@ $row = $result->fetch_assoc();
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="admin_view_event.php">Home</a>
             <a class="nav-item nav-link" href="admin_create_event.php">Create Events</a>
+            <a class="nav-item nav-link" href="admin_edit_event.php">Edit Events</a>
             <a class="nav-item nav-link" href="admin_student_table.php">Students</a>
 
         </div>

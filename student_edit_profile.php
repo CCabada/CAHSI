@@ -183,6 +183,8 @@ if (isset($_POST['Submit'])) {
 
 
     //insert to student table;
+    #Todo Fix query
+
     $queryUser = "UPDATE s20am_team1.student set SUsername, Classification, Ethnicity, Employment_Status, Nationality, Gender, Age, Password, FName, LName VALUES
                 VALUES '" . $username . "', '" . $classification . "', '" . $ethnicity . "','" . $employment_Status . "',  '" . $nationality . "',  '" . $gender . "', '" . $age . "', '" . $password . "','" . $first_name . "', '" . $last_name . "' where SUsername = $student;";
     if ($conn->query($queryUser) === TRUE) {
