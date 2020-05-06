@@ -35,7 +35,7 @@ require_once('config.php');
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
                         <li class="divider"></li>
-                        <li><a href="index.html" method = "POST"><i class="icon-off"></i> Logout</a></li>
+                        <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -58,14 +58,7 @@ require_once('config.php');
             <th scope="col">Check In</th>
         </tr>
 <?php
-if (isset($_POST['logout'])) {
-    session_destroy();
-    exit();
-}
-
 //View to Event table;
-
-
 $user = _SESSION[$username];
 $query = "select * from events e join event_located el on e.EventID=el.EventID join location l on el.LocationID=l.LocationID;";
 

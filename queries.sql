@@ -350,6 +350,8 @@ CREATE VIEW UtepStudents as SELECT COUNT(*) From Student s inner JOIN  attends a
 
 CREATE VIEW FemaleOffers as SELECT COUNT(*) FROM STUDENT JOIN OFFERS USING (SUSERNAME) WHERE GENDER = 'Female' AND company = 'Google';
 
+CREATE VIEW EventLocation as SELECT COUNT(*) FROM STUDENT JOIN OFFERS USING (SUSERNAME) WHERE GENDER = 'Female' AND company = 'Google';
+
 Drop VIEW FemaleOffers;
 
 

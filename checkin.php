@@ -39,7 +39,7 @@ if (isset($_POST['eventId'])) {
 
 // $studentQuery = "Select SID from s20am_team1.Student where SUsername = ";
 
-if (isset($_GET['logout'])) {
+if (isset($_POST['logout'])) {
     session_destroy();
     exit();
 }

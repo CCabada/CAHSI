@@ -37,7 +37,7 @@ require_once('config.php');
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
                         <li class="divider"></li>
-                        <li><a href="/auth/logout"><i class="icon-off"></i> Logout</a></li>
+                        <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>

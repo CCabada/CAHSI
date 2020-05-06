@@ -38,7 +38,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
                         <li class="divider"></li>
-                        <li><a href="/index.html" method="post"><i class="icon-off"></i> Logout</a></li>
+                        <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -139,10 +139,7 @@ if (isset($_POST['Submit'])){
         echo "Error: " . $queryUser . "<br>" . $conn->error;
     }
 }
-if (isset($_POST['logout'])) {
-    session_destroy();
-    exit();
-}
+
 ?>
 
 </body>
