@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once('config.php');
-// if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 if (isset($_POST['eventId'])) { 
     if(!$conn) {
@@ -14,11 +13,11 @@ if (isset($_POST['eventId'])) {
     $userId = "SELECT SID from s20am_team1.Student where SUsername='".$student_username."';";
     $result = $conn->query($userId); 
     if ($result->num_rows > 0  ) { 
-        $sid = $result->fetch_assoc()["SID"]; 
-        printf("%s", $sid); 
-        $insert_query  = "INSERT INTO s20am_team1.checkin (EventID, SID) values (?, ?);"; 
+        $row = $result->fetch_row(); 
+        $sid = $row[0]; 
+        $insert_query  = "INSERT INTO s20am_team1.checkin (EventID, SID) values (?, ?);";
         $stmt = $conn->prepare($insert_query); 
-        $stmt->bind_param("ss", $event_id, $sid); 
+        $stmt->bind_param("ii", $event_id, $sid); 
         
         if ($stmt->execute()) {
             $return['msg'] = "Registered to event"; 
