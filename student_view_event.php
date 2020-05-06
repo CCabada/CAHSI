@@ -114,16 +114,15 @@ else {
 }
 ?>
         </table>
-        <button type="button" class="btn btn-primary" onclick="submit()">Submit</button>
 </form>
+<button type="button" class="btn btn-primary" onclick="submit()">Submit</button>
 </div>
     <script>
         function submit() {
             var table = document.getElementById("events"); 
-
             for (var i = 0; i < table.rows.length; i++) {
                 var objcell = table.rows.item(i).cells; 
-                var input = objcell[10].getElementsByClassName("custmon-control-input"); 
+                var input = objcell[10].getElementsByClassName("custmon-control-input");  
                 for (var j = 0; j < input.length; j++) {
                     if (input[j]) { // why is this check here? becuase the first element is the header of the table 
                         if (input[j].checked) {
