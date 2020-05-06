@@ -3,8 +3,8 @@
 $host = "ilinkserver.cs.utep.edu";
 $db = 's20am_team1';   # enter your team database here.
 
-$username = "";  # enter your username here.
-$password = "";  # enter your password here.
+$username = "eirodriguez5";  # enter your username here.
+$password = "almostInterface";  # enter your password here.
 
 /**
  * Making the connection to the database.

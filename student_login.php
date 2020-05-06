@@ -5,22 +5,21 @@ $_SESSION['logged_in'] = false;
 
 if (!empty($_POST)){
     if (isset($_POST['Submit'])){
-        $input_username = isset($_POST['username']) ? $_POST['username'] : " ";
+        $input_username = isset($_POST['username']) ? $_POST['username'] : " "; 
         $input_password = isset($_POST['password']) ? $_POST['password'] : " ";
-        $input_username = stripslashes($input_username);
-        $input_username = mysqli_escape_string($input_username);
-        echo $input_username;
+        // $input_username = stripslashes($input_username);
+        // $input_username = mysqli_escape_string($input_username);
 
         $queryStudent = "SELECT * FROM s20am_team1.Student WHERE SUsername='".$input_username."' AND Password='".$input_password."';";
         $resultStudent = $conn->query($queryStudent);
 
-        if ($resultStudent ->num_rows > 0  ) {
+        if ($resultStudent->num_rows > 0  ) {
             //if there is a result, that means that the user was found in the database
             $_SESSION['student_user'] = $input_username;
             $_SESSION['logged_in'] = true;
             header("Location: view_event.php");
         } else {
-            echo "User not found.";
+            echo "<script type='text/javascript'>alert('User Not Found');</script>";
         }
     }
 }
@@ -48,7 +47,9 @@ if (!empty($_POST)){
                 </div>
             </div>
             <div class="d-flex justify-content-center form_container">
-                <form action="view_event.php" method="post">
+
+
+                <form action="student_login.php" method="post">
                     <div class="input-group mb-3">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -68,12 +69,15 @@ if (!empty($_POST)){
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mt-3 login_container">
-                        <input type="submit" name="Submit" href = "view_event.php" class="btn login_btn"/>
+                        <input type="submit" name="Submit" class="btn login_btn"/>
                     </div>
                     <div class="d-flex justify-content-center mt-3 login_container">
                         <button name="Cancel" href="index.html" class="btn login_btn">Cancel</button>
                     </div>
                 </form>
+
+
+
             </div>
 
             <div class="mt-4">

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('config.php');
 ?>
 
@@ -10,6 +11,7 @@ require_once('config.php');
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>View Event</title>
 </head>
 <body>
@@ -56,11 +58,10 @@ require_once('config.php');
             <th scope="col">Check In</th>
         </tr>
 <?php
-
 //View to Event table;
 $query = "select * from events e join event_located el on e.EventID=el.EventID join location l on el.LocationID=l.LocationID;";
 
-$connection = mysqli_connect('ilinkserver.cs.utep.edu',$username, $password, $db); 
+$connection = mysqli_connect($host,$username, $password, $db); 
 if(!$connection)
 {
     echo "Error connecting to mysql"; 
@@ -83,21 +84,21 @@ $result = mysqli_query($connection, $query);
             $zipCode = $row["ZipCode"];
 
             echo '<tr> 
-                      <td>'.$event_name.'</td> 
-                      <td>'.$eventId.'</td> 
-                      <td>'.$date.'</td> 
-                      <td>'.$type.'</td> 
-                      <td>'.$venue.'</td>
-                      <td>'.$address.'</td>
-                      <td>'.$city.'</td>
-                      <td>temp</td>
-                      <td>temp</td>
-                      <td>'.$zipCode.'</td> 
-                      <td>
+                    <td>'.$event_name.'</td> 
+                    <td>'.$eventId.'</td> 
+                    <td>'.$date.'</td> 
+                    <td>'.$type.'</td> 
+                    <td>'.$venue.'</td>
+                    <td>'.$address.'</td>
+                    <td>'.$city.'</td>
+                    <td>temp</td>
+                    <td>temp</td>
+                    <td>'.$zipCode.'</td> 
+                    <td>
                         <div class="custom-contgrol custom-checkbox">
-                            <input  type="checkbox" class="custmon-control-input">
+                            <input  type="checkbox" class="custmon-control-input" value="1">
                         </div>
-                        </td>
+                    </td>
                   </tr>';
         }
         $result->free();
@@ -118,7 +119,15 @@ else {
                 for (var j = 0; j < input.length; j++) {
                     if (input[j]) { // why is this check here? becuase the first element is the header of the table 
                         if (input[j].checked) {
-                            alert("Win"); 
+                            var eventId = objcell[1].innerText; 
+                            $.ajax({
+                                data: 'eventId='+eventId, 
+                                url: 'checkin.php', 
+                                method: 'POST', 
+                                success: function (msg) {
+                                    alert(msg); 
+                                }
+                            }); 
                         }
                     }
                 }
