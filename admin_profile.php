@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('config.php');
-$user = $_SESSION['student_user']
+$admin = $_SESSION['admin_user']
 ?>
 
 <!DOCTYPE HTML>
@@ -13,7 +13,7 @@ $user = $_SESSION['student_user']
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <title>Edit Profile</title>
+    <title>Profile</title>
 </head>
 <body>
 
@@ -26,18 +26,19 @@ $user = $_SESSION['student_user']
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="student_view_event.php">Home</a>
-            <a class="nav-item nav-link" href="student_report_offers.php">Report Offers</a>
+            <a class="nav-item nav-link active" href="admin_view_event.php">Home</a>
+            <a class="nav-item nav-link" href="admin_create_event.php">Create Events</a>
+            <a class="nav-item nav-link" href="admin_student_table.php">Students</a>
 
         </div>
     </div>
     <div class="pull-right">
         <ul class="nav pull-right">
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php
-                    echo $user;
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome,<?php
+                    echo $admin;
                     ?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Classes/cs4342/Team1_am/student_profile.php"><i class="icon-cog"></i>Profile</a></li>
+                    <li><a href="/Classes/cs4342/Team1_am/admin_profile.php"><i class="icon-cog"></i>Profile</a></li>
                     <li class="divider"></li>
                     <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
                 </ul>

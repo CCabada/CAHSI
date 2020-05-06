@@ -47,9 +47,9 @@ $user = $_SESSION['student_user']
                     echo $user;
                     ?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
+                    <li><a href="/Classes/cs4342/Team1_am/student_profile.php"><i class="icon-cog"></i>Profile</a></li>
                     <li class="divider"></li>
-                    <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
+                    <li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -73,7 +73,7 @@ $user = $_SESSION['student_user']
         </tr>
 <?php
 //View to Event table;
-$user = _SESSION[$username];
+
 $query = "select * from events e join event_located el on e.EventID=el.EventID join location l on el.LocationID=l.LocationID;";
 
 $connection = mysqli_connect($host,$username, $password, $db); 

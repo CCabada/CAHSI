@@ -38,15 +38,20 @@ $admin = $_SESSION['admin_user']
                     echo $admin;
                     ?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
+                    <li><a href="admin_profile.php"><i class="icon-cog"></i>Profile</a></li>
                     <li class="divider"></li>
-                    <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
+                    <li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>
     </div>
 </nav>
 <h1>View Events</h1>
+
+<form action="admin_view_event.php" method="POST">
+    <input id="search" type="text" placeholder="Type here">
+    <input id="submit" href = "admin_view_event.php" type="Submit" value="Search">
+</form>
 
 <table id="events" class="table table-striped">
     <tr>
@@ -63,9 +68,12 @@ $admin = $_SESSION['admin_user']
     </tr>
     <?php
     //View to Event table;
-    $user = _SESSION[$username];
-    $query = "select * from events e join event_located el on e.EventID=el.EventID join location l on el.LocationID=l.LocationID;";
-
+    if (isset($_POST['Submit'])){
+        $search = isset($_POST['Submit']);
+        $query = "select * from events e join event_located el on e.EventID=el.EventID join location l on el.LocationID=l.LocationID where e.EventID = '.$search';";
+    }else{
+        $query = "select * from events e join event_located el on e.EventID=el.EventID join location l on el.LocationID=l.LocationID;";
+    }
     $connection = mysqli_connect($host,$username, $password, $db);
     if(!$connection)
     {
