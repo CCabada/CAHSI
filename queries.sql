@@ -234,6 +234,11 @@ UPDATE Student set Gender = 'Female' where SUsername = 'student1';
 UPDATE Student set Gender = 'Female' where SUsername = 'student2';
 UPDATE Student set Gender = 'Male' where SUsername = 'student3';
 
+UPDATE Student set Advocate = 0 where SUsername = 'student1';
+UPDATE Student set Advocate = 0 where SUsername = 'student2';
+UPDATE Student set Advocate = 0 where SUsername = 'student3';
+
+
 
 
 INSERT INTO Attends(susername, uid) VALUES ('student1', 1);
@@ -358,3 +363,9 @@ Drop VIEW FemaleOffers;
 SELECT COUNT(*) FROM STUDENT JOIN OFFERS USING (SUSERNAME) WHERE GENDER = 'Female' AND company = 'Google';
 
 Drop view FemaleOffers;
+
+SELECT Advocate from s20am_team1.student  where SUsername like 'testProUser' and Advocate = 1;
+
+SELECT Advocate from s20am_team1.student where SUsername = 'student3' and Advocate = 1;
+
+SELECT SUsername FROM s20am_team1.student where Advocate like 1;

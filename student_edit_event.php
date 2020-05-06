@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once('config.php');
-$admin = $_SESSION['admin_user']
+$user = $_SESSION['student_user'];
+
 ?>
 
 <!DOCTYPE HTML>
@@ -16,7 +17,6 @@ $admin = $_SESSION['admin_user']
     <title>Edit Event</title>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
         <img src="images/cahsilogo.png" width="150" height="50">
@@ -26,22 +26,36 @@ $admin = $_SESSION['admin_user']
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="admin_view_event.php">Home</a>
-            <a class="nav-item nav-link" href="admin_create_event.php">Create Events<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="admin_edit_event.php">Edit Events</a>
-            <a class="nav-item nav-link" href="admin_student_table.php">Students</a>
+            <a class="nav-item nav-link active" href="student_view_event.php">Home </a>
+            <a class="nav-item nav-link" href="student_report_offers.php">Report Offers<span class="sr-only">(current)</span></a>
+            <?php
+            $advoc = "SELECT Advocate from s20am_team1.student where SUsername = '.$user.' and Advocate = 1;";
+
+            $connection = mysqli_connect($host,$username, $password, $db);
+            if(!$connection)
+            {
+                echo "Error connecting to mysql";
+                echo mysqli_connect_error();
+            }
+
+            $result = mysqli_query($connection, $advoc);
+            if($result->num_rows = 1) {
+                echo '<a class="nav-item nav-link active" href="student_create_event.php">Create Event </a>';
+                echo '<a class="nav-item nav-link active" href="student_edit_event.php">Edit Event</a>';
+            }
+            ?>
 
         </div>
     </div>
     <div class="pull-right">
         <ul class="nav pull-right">
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php
-                    echo $admin;
+                    echo $user;
                     ?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Classes/cs4342/Team1_am/admin_profile.php"><i class="icon-cog"></i>Profile</a></li>
+                    <li><a href="/Classes/cs4342/Team1_am/student_profile.php"><i class="icon-cog"></i>Profile</a></li>
                     <li class="divider"></li>
-                    <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
+                    <li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -159,15 +173,16 @@ if (isset($_POST['Submit'])){
     $zipCode = isset($_POST['zipCode']) ? $_POST['zipCode'] : " ";
 
     //insert to Event table;
-    $queryUser  = "UPDATE s20am_team1.Events set (dates, Name, type) 
-                VALUES ( '".$date."','".$event_name."', '".$type."');";
+
+    $queryUser  = "UPDATE  s20am_team1.Events set(EventID, Event_Location, Time, DATE, Name, type) 
+                VALUES ('".$event_name."', '".$eventId."', '".$date."', '".$type."', '".$venue."', '".$address."', '".$city."', '".$state."', '".$country."', '".$zipCode."');";
     if ($conn->query($queryUser) === TRUE) {
         echo "New Event created successfully";
     } else {
         echo "Error: " . $queryUser . "<br>" . $conn->error;
     }
 
-    $queryLoc = "UPDATE s20am_team1.Location set (zipCode, City, Address) VALUES ('".$zipCode."','".$city."', '".$address."' );";
+    $queryLoc = "UPDATE s20am_team1.Locations(LocationID, zipCode, Country, State, City, Address) VALUES ('".$venue."', '".$address."', '".$city."', '".$state."', '".$country."', '".$zipCode."');";
     if ($conn->query($queryLoc) === TRUE) {
         echo "New Event created successfully";
     } else {

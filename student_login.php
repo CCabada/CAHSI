@@ -11,11 +11,14 @@ if (!empty($_POST)){
         // $input_username = mysqli_escape_string($input_username);
 
         $queryStudent = "SELECT * FROM s20am_team1.Student WHERE SUsername='".$input_username."' AND Password='".$input_password."';";
+        $queryAdvocate = "SELECT * FROM s20am_team1.Student WHERE SUsername='".$input_username."' AND Password='".$input_password."';";
+
         $resultStudent = $conn->query($queryStudent);
 
         if ($resultStudent->num_rows > 0  ) {
             //if there is a result, that means that the user was found in the database
             $_SESSION['student_user'] = $input_username;
+            $_SESSION['advocate'] =
             $_SESSION['logged_in'] = true;
             header("Location: student_view_event.php");
         } else {
