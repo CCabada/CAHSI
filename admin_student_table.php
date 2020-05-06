@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('config.php');
+$admin = $_SESSION['admin_user']
 ?>
 
     <!DOCTYPE HTML>
@@ -33,7 +34,9 @@ require_once('config.php');
         </div>
         <div class="pull-right">
             <ul class="nav pull-right">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome,'.$user.' <b class="caret"></b></a>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome,<?php
+                        echo $admin;
+                        ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
                         <li class="divider"></li>
