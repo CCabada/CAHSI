@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('config.php');
+$user = $_SESSION['student_user']
 ?>
 
 <!DOCTYPE HTML>
@@ -25,15 +26,16 @@ require_once('config.php');
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="admin_view_event.php">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="admin_create_event.php">Create Events</a>
-            <a class="nav-item nav-link" href="admin_student_table.php">Students</a>
+            <a class="nav-item nav-link active" href="student_view_event.php">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="student_report_offers.php">Report Offers</a>
 
         </div>
     </div>
     <div class="pull-right">
         <ul class="nav pull-right">
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome,'.$user.' <b class="caret"></b></a>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php
+                    echo $user;
+                    ?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
                     <li class="divider"></li>

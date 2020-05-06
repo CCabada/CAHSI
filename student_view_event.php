@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('config.php');
+$user = $_SESSION['student_user']
 ?>
 
 <!DOCTYPE HTML>
@@ -15,7 +16,6 @@ require_once('config.php');
     <title>View Event</title>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="images/cahsilogo.png" width="150" height="50">
@@ -40,7 +40,21 @@ require_once('config.php');
                 </li>
             </ul>
         </div>
-    </nav>
+    </div>
+    <div class="pull-right">
+        <ul class="nav pull-right">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php
+                    echo $user;
+                    ?><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-cog"></i>Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/logout.php"><i class="icon-off"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
     <h1>View Events</h1>
 
     <table id="events" class="table table-striped">
