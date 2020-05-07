@@ -8,7 +8,7 @@ if (!empty($_POST)){
         $input_username = isset($_POST['username']) ? $_POST['username'] : " ";
         $input_password = isset($_POST['password']) ? $_POST['password'] : " ";
 
-        echo $input_username;
+        //echo $input_username;
 
         $queryAdmin = "SELECT * FROM s20am_team1.admin WHERE AUsername='".$input_username."' AND Password='".$input_password."';";
         $resultAdmin = $conn->query($queryAdmin);
@@ -47,8 +47,6 @@ if (!empty($_POST)){
                 </div>
             </div>
             <div class="d-flex justify-content-center form_container">
-
-
                 <form action="Admin_login.php" method="post">
                     <div class="input-group mb-3">
                         <div class="input-group-append">
@@ -75,16 +73,6 @@ if (!empty($_POST)){
                         <button name="Cancel" href="index.html" class="btn login_btn">Cancel</button>
                     </div>
                 </form>
-
-
-
-            </div>
-
-            <div class="mt-4">
-
-                <div class="d-flex justify-content-center links">
-                    <a href="forgot_pass.php">Forgot your password?</a>
-                </div>
             </div>
         </div>
     </div>

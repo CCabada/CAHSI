@@ -87,9 +87,7 @@ if (!empty($_POST)){
                 <div class="d-flex justify-content-center links">
                     Don't have an account? <a href="student_create_account.php" class="ml-2">Sign Up</a>
                 </div>
-                <div class="d-flex justify-content-center links">
-                    <a href="forgot_pass.php">Forgot your password?</a>
-                </div>
+
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="">
     
 <head>
     <title>Create Account</title>
@@ -62,10 +62,13 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
                             <label>Gender</label>
                             <input type="text" name="gender" class="form-control input_pass">
                         </div>
-
+                        <div class="from-group">
+                            <label>Advocate</label>
+                            <input type="checkbox" name="checkbox" checked= "1"/
+                        </div>
                         <div class="from-group">
                             <label>Username</label>
-							<input type="text" name="username" class="form-control input_pass"  >
+                            <input type="text" name="username" class="form-control input_pass"  >
                         </div>
                         <div class="from-group">
                             <label>Password</label>
@@ -73,13 +76,13 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
                         </div>
                         <div class="from-group">
                             <label>Retype Password</label>
-							<input type="password" name="retype_password" class="form-control input_pass"  >
+							<input type="password" name="retype_password" class="form-control input_pass"/>
 						</div>
                         <div class="d-flex justify-content-center mt-3 login_container">
-                            <input type="submit" name="Submit" value="Submit" class="btn login_btn"/>
+                            <input type="Submit" name="Submit" value="Submit" class="btn login_btn"/>
                         </div>
                         <div class="d-flex justify-content-center mt-3 login_container">
-                            <button name="Cancel" href="index.html" class="btn login_btn">Cancel</button>
+                            <button class="btn login_btn" href="index.html" name="Cancel">Cancel</button>
                         </div>
 					</form>
 				</div>
@@ -99,24 +102,35 @@ if (isset($_POST['Submit'])){
     $gender = isset($_POST['gender']) ? $_POST['gender'] : " ";
     $nationality = isset($_POST['nationality']) ? $_POST['nationality'] : " ";
     $ethnicity = isset($_POST['ethnicity']) ? $_POST['ethnicity'] : " ";
+    $advocate = isset($_POST['checkbox']);
     $username = isset($_POST['username']) ? $_POST['username'] : " ";
     $age = isset($_POST['age']) ? $_POST['age'] : " ";
     $password = isset($_POST['password']) ? $_POST['password'] : " ";
     $retyPassword = isset($_POST['retype_password']) ? $_POST['retype_password'] : " ";
 
     if ($password != $retyPassword){
-        echo "Passwords don't match";
+        echo "Error:Passwords don't match";
     }
 
+    //insert to Student table;
 
-    //insert to student table;
-    $queryUser  = "INSERT INTO s20am_team1.student(SUsername,  Password, FName, LName, Advocate, Classification, Ethnicity, Employment_Status, Nationality, Gender, Age) VALUES
-                VALUES ('".$username."', '".$password."', '".$first_name."', '".$last_name."','".$classification."', '".$ethnicity."','".$employment_Status."',  '".$nationality."',  '".$gender."', '".$age."');";
-    if ($conn->query($queryUser) === TRUE) {
-       // echo "New record created successfully";
+    $query = "CALL addStudent(?,?,?,?,?,?,?,?,?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ssssssssssi", $username, $password, $first_name, $last_name, $classification, $ethnicity, $employment_Status, $nationality, $gender, $age);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Account Created')</script>";
     } else {
-        echo "Error: " . $queryUser . "<br>" . $conn->error;
+        echo "<script>alert('Procedure Failed')</script>";
     }
+
+//    $queryUser  = sprintf("INSERT INTO s20am_team1.student(SUsername,  Password, FName, LName, Advocate, Classification, Ethnicity, Employment_Status, Nationality, Gender, Age)
+//VALUES ('%s', '%s', '%s', '%s','%s','%s', '%s','%s',  '%s','%s', '%s');", $username, $password, $first_name, $last_name, $advocate, $classification, $ethnicity, $employment_Status, $nationality, $gender, $age);
+//    if ($conn->query($query) === TRUE) {
+//        echo "New record created successfully";
+//    } else {
+//        echo "Error: " . $query . "<br>" . $conn->error;
+//    }
     echo "<p>Hello " .$first_name."!<br> Your username is: ".$username."</p>";
 
 }
