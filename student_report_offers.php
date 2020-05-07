@@ -53,7 +53,7 @@ $student = $_SESSION['student_user']
                     echo $student;
                     ?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Classes/cs4342/Team1_am/student_profile.php"><i class="icon-cog"></i>Profile</a></li>
+                    <li><a href="student_profile.php"><i class="icon-cog"></i>Profile</a></li>
                     <li class="divider"></li>
                     <li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
                 </ul>

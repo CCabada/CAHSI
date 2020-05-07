@@ -66,7 +66,6 @@ if (!$admin) {
                 <th scope="col">Gender</th>
                 <th scope="col">Age</th>
             </tr>
-        </table>
         <?php
         //View to Event table;
 
@@ -113,7 +112,7 @@ if (!$admin) {
             echo '<tr> <td colspan=10>Data not available</td>';
         }
         ?>
-
-    </body>
-    </html>
-<?php
+    </table>
+    </div>
+</body>
+</html>
