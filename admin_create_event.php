@@ -165,59 +165,15 @@ if (isset($_POST['Submit'])){
     $zipCode = isset($_POST['zipCode']) ? $_POST['zipCode'] : " ";
 
     //insert to Event table;
+    $query = "CALL addEVENT(?,?,?,?,?,?,?,?,?)"; 
+    $stmt = $conn->prepare($query); 
+    $stmt->bind_param("issssssss",$zipCode, $city, $address, $date, $event_name, $type, $venue, $eventRoom, $admin); 
 
-    $queryUser  = "INSERT INTO s20am_team1.Events (AUsername, Dates, Name, Type) VALUES (?,?,?,?);";
-    $stmt = $conn->prepare($queryUser); 
-    $stmt->bind_param("ssss", $admin, $date, $event_name, $type); 
     if ($stmt->execute()) {
-        echo "New Event created successfully";
+        echo "<script>alert('Event Created')</script>"; 
     } else {
-        echo "Error: " . $queryUser . "<br>" . $conn->error;
+        echo "<script>alert('Procedure Failed')</script>";
     }
-
-    // insert to location table
-    $queryLoc = "INSERT INTO s20am_team1.Location(zipCode, City, Address) VALUES (?,?,?);";
-    $stmt2 = $conn->prepare($queryLoc); 
-    $stmt2->bind_param("sss", $zipCode, $city, $address); 
-    if ($stmt2->execute()) {
-        echo "New Location created successfully";
-    } else {
-        echo "Error: " . $queryUser . "<br>" . $conn->error;
-    }
-
-    // getting location id
-    $locquery = "SELECT LocationID FROM s20am_team1.Location WHERE ZipCode = '".$zipCode."' AND City='".$city."' AND Address='".$address."';"; 
-    $resultl = $conn->query($locquery); 
-
-    if ($resultl->num_rows > 0) {
-        $row = $resultl->fetch_row(); 
-        $locId = $row[0];
-
-        // getting event id
-        $eventidquery = "SELECT EventID FROM s20am_team1.Events WHERE Name='".$event_name."' AND Type='".$type."' AND Date='".$date."';"; 
-        $resulte = $conn->query($locquery); 
-        if ($resulte->num_rows > 0) {
-            $row = $resulte->fetch_row(); 
-            $eventId = $row[0];
-
-            //inserting into event located
-            $venueQuery = "INSERT INTO s20am_team1.event_located (LocationID, EventID, EventVenue, EventRoom) VALUES (?,?,?,?)"; 
-            $stmt3 = $conn->prepare($venueQuery); 
-            $stmt3->bind_param("ssss", $locId, $eventId, $venue, $eventRoom); 
-
-            if ($stmt3->execute()) {
-                echo "<script>alert('Event Created');</script>";
-            }
-            else {
-                echo "failed on insert to event located"; 
-            }
-        } else {
-            echo "failed at getting event id";
-        }
-    } else {
-        echo "failed at getting location id";
-    }
-
 }
 
 ?>
