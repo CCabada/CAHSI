@@ -63,7 +63,7 @@ $student = $_SESSION['student_user']
 </nav>
 
 <div class="container emp-profile">
-    <form action="student_edit_profile.php" method="post">
+    <form  method="post">
         <div class="row">
             <div class="col-md-4">
                 <h1>Report Offers</h1>
