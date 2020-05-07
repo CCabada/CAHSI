@@ -55,6 +55,7 @@ if (!empty($_POST)){
             if($result->num_rows == 1) {
                 echo '<a class="nav-item nav-link" href="student_create_event.php">Create Event </a>';
                 echo '<a class="nav-item nav-link" href="student_edit_event.php">Edit Event</a>';
+                echo '<a class="nav-item nav-link" href="student_generate_reports.php">Generate Reports</a>';
             }
             ?>
         </div>
