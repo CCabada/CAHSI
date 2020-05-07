@@ -75,7 +75,7 @@ if (!$admin) {
                                 <label>Date</label>
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text">
+                                <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -92,6 +92,14 @@ if (!$admin) {
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="Venue" name="venue">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Event Room</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Event Room" name="eventRoom">
                             </div>
                         </div>
                         <div class="row">
@@ -127,7 +135,7 @@ if (!$admin) {
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <input type="submit" href="student_edit_profile.php" class="profile-edit-btn" name="btnAddMore" value="Submit"/>
+                            <input type="submit" href="student_edit_profile.php" class="profile-edit-btn" name="Submit" value="Submit"/>
                         </div>
                     </div>
                 </div>
@@ -146,6 +154,7 @@ if (isset($_POST['Submit'])){
      */
     $event_name = isset($_POST['event_name']) ? $_POST['event_name'] : " ";
     $eventId = isset($_POST['eventId']) ? $_POST['eventId'] : " ";
+    $eventRoom = isset($_POST['eventRoom']) ? $_POST['eventRoom'] : " ";
     $date = isset($_POST['date']) ? $_POST['date'] : " ";
     $type = isset($_POST['type']) ? $_POST['type'] : " ";
     $venue = isset($_POST['venue']) ? $_POST['venue'] : " ";
@@ -157,20 +166,58 @@ if (isset($_POST['Submit'])){
 
     //insert to Event table;
 
-    $queryUser  = "INSERT INTO s20am_team1.Events (dates, Name, type) 
-                VALUES ( '".$date."','".$event_name."', '".$type."');";
-    if ($conn->query($queryUser) === TRUE) {
+    $queryUser  = "INSERT INTO s20am_team1.Events (AUsername, Dates, Name, Type) VALUES (?,?,?,?);";
+    $stmt = $conn->prepare($queryUser); 
+    $stmt->bind_param("ssss", $admin, $date, $event_name, $type); 
+    if ($stmt->execute()) {
         echo "New Event created successfully";
     } else {
         echo "Error: " . $queryUser . "<br>" . $conn->error;
     }
 
-    $queryLoc = "INSERT INTO s20am_team1.Location(zipCode, City, Address) VALUES ('".$zipCode."','".$city."', '".$address."' );";
-    if ($conn->query($queryLoc) === TRUE) {
-        echo "New Event created successfully";
+    // insert to location table
+    $queryLoc = "INSERT INTO s20am_team1.Location(zipCode, City, Address) VALUES (?,?,?);";
+    $stmt2 = $conn->prepare($queryLoc); 
+    $stmt2->bind_param("sss", $zipCode, $city, $address); 
+    if ($stmt2->execute()) {
+        echo "New Location created successfully";
     } else {
         echo "Error: " . $queryUser . "<br>" . $conn->error;
     }
+
+    // getting location id
+    $locquery = "SELECT LocationID FROM s20am_team1.Location WHERE ZipCode = '".$zipCode."' AND City='".$city."' AND Address='".$address."';"; 
+    $resultl = $conn->query($locquery); 
+
+    if ($resultl->num_rows > 0) {
+        $row = $resultl->fetch_row(); 
+        $locId = $row[0];
+
+        // getting event id
+        $eventidquery = "SELECT EventID FROM s20am_team1.Events WHERE Name='".$event_name."' AND Type='".$type."' AND Date='".$date."';"; 
+        $resulte = $conn->query($locquery); 
+        if ($resulte->num_rows > 0) {
+            $row = $resulte->fetch_row(); 
+            $eventId = $row[0];
+
+            //inserting into event located
+            $venueQuery = "INSERT INTO s20am_team1.event_located (LocationID, EventID, EventVenue, EventRoom) VALUES (?,?,?,?)"; 
+            $stmt3 = $conn->prepare($venueQuery); 
+            $stmt3->bind_param("ssss", $locId, $eventId, $venue, $eventRoom); 
+
+            if ($stmt3->execute()) {
+                echo "<script>alert('Event Created');</script>";
+            }
+            else {
+                echo "failed on insert to event located"; 
+            }
+        } else {
+            echo "failed at getting event id";
+        }
+    } else {
+        echo "failed at getting location id";
+    }
+
 }
 
 ?>
