@@ -1,4 +1,3 @@
-
 CREATE TABLE Participant (
 Username CHAR(50) NOT NULL,
 Password CHAR(50) NOT NULL ,
@@ -249,6 +248,7 @@ INSERT INTO Attends(susername, uid) VALUES ('student3', 3);
 
 INSERT INTO Offers(SUsername, Type, Date_Recieved, Interview, Company, Response) VALUES ('student1','Full-Time','2020/08/25', 'Yes', 'Google','Accept' );
 INSERT INTO Offers(SUsername, Type, Date_Recieved, Interview, Company, Response) VALUES  ('student2','Internship' ,'2020/08/25', 'Yes', 'Intel', 'Accept' );
+INSERT INTO Offers(SUsername, Type, Date_Recieved, Interview, Company, Response) VALUES  ('student2','Fulltime' ,'2020/08/25', 'Yes', 'Facebook', 'Accept' );
 INSERT INTO Offers(SUsername, Type, Date_Recieved, Interview, Company, Response) VALUES ('student3','Full-Time','2020/08/25', 'Yes', 'CIA', 'Denied');
 
 
@@ -318,9 +318,11 @@ INSERT INTO Event_Located(locationid, eventid, EventVenue, EventRoom) VALUES(1,1
 INSERT INTO Event_Located(locationid, eventid, EventVenue, EventRoom)  VALUES(1,2, 'CCSB', '1.706');
 INSERT INTO Event_Located(locationid, eventid, EventVenue, EventRoom)  VALUES(1,3, 'Union', '315');
 
+SELECT SUsername, OfferCount FROM SELECT SUsername AS Username, COUNT(SUsername) AS OfferCount FROM OFFERS GROUP BY SUsername);
 
 
 
+SELECT INSTITUTION_NAME, ATTENDING FROM Institution JOIN (SELECT UID AS UniID, COUNT(UID) AS Attending FROM Attends GROUP BY UID) As NumAttending WHERE NumAttending.UniID = Institution.UID;
 
 SELECT * FROM s20am_team1.Events se INNER JOIN s20am_team1.event_located sl  INNER JOIN s20am_team1.location l where se.EventID = sl.EventID and  sl.LocationID = l.locationId;
 

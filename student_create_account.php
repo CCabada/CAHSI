@@ -90,10 +90,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 
 if (isset($_POST['Submit'])){
-
-    /**
-     * Grab information from the form submission and store values into variables.
-     */
     $first_name = isset($_POST['first_name']) ? $_POST['first_name'] : " ";
     $last_name = isset($_POST['last_name']) ? $_POST['last_name'] : " ";
     $studentId = isset($_POST['studentId']) ? $_POST['studentId'] : " ";
@@ -114,8 +110,8 @@ if (isset($_POST['Submit'])){
 
 
     //insert to student table;
-    $queryUser  = "INSERT INTO s20am_team1.student(SUsername, Classification, Ethnicity, Employment_Status, Nationality, Gender, Age, Password, FName, LName) VALUES
-                VALUES ('".$username."', '".$classification."', '".$ethnicity."','".$employment_Status."',  '".$nationality."',  '".$gender."', '".$age."', '".$password."','".$first_name."', '".$last_name."');";
+    $queryUser  = "INSERT INTO s20am_team1.student(SUsername,  Password, FName, LName, Advocate, Classification, Ethnicity, Employment_Status, Nationality, Gender, Age) VALUES
+                VALUES ('".$username."', '".$password."', '".$first_name."', '".$last_name."','".$classification."', '".$ethnicity."','".$employment_Status."',  '".$nationality."',  '".$gender."', '".$age."');";
     if ($conn->query($queryUser) === TRUE) {
        // echo "New record created successfully";
     } else {

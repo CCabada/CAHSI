@@ -13,7 +13,7 @@ if(!$connection)
 
 $resultEventAttendees = mysqli_query($connection, $EventAttendees);
 
-$FemaleOffers = "select * from s20am_team1.FemaleOffers;";
+$numOffers = "select * from s20am_team1.numstudentoffers ;";
 
 $connection = mysqli_connect($host,$username, $password, $db);
 if(!$connection)
@@ -22,7 +22,7 @@ if(!$connection)
     echo mysqli_connect_error();
 }
 
-$resultFemaleOffers = mysqli_query($connection, $FemaleOffers);
+$resultnumOffers = mysqli_query($connection, $numOffers);
 
 $NumberStudentsInstitution = "select * from s20am_team1.NumberStudentsInstitution;";
 
@@ -99,7 +99,7 @@ $resultNumberStudentsInstitution = mysqli_query($connection, $NumberStudentsInst
 <div class="container emp-profile">
     <form method="GET">
         <H3>Generate Reports</h3>
-        <label>Most Attendees</label>
+        <label>Event Attendees</label>
         <table id="attendees" class="table table-striped">
             <tr>
                 <th scope="col">Event Name</th>
@@ -123,16 +123,20 @@ $resultNumberStudentsInstitution = mysqli_query($connection, $NumberStudentsInst
                 ?>
             </tr>
         </table>
-        <label>Number Female Offers</label>
+        <label>Number Student Offers</label>
         <table id="FemaleOffers" class="table table-striped">
             <tr>
-                <th scope="col"># of students</th>
+
+                <th scope="col">Student Username</th>
+                <th scope="col"># of Offers</th>
                 <?php
-                if($resultFemaleOffers->num_rows > 0){
+                if($resultnumOffers->num_rows > 0){
                 $index = 0;
-                while ($row = mysqli_fetch_assoc($resultFemaleOffers)){
-                    $count = $row["COUNT(*)"];
+                while ($row = mysqli_fetch_assoc($resultnumOffers)){
+                    $student = $row["Username"];
+                    $count = $row["OfferCount"];
                     echo '<tr> 
+                        <td>'.$student.'</td> 
                         <td>'.$count.'</td> 
                     </tr>';
                 } }
@@ -151,8 +155,8 @@ $resultNumberStudentsInstitution = mysqli_query($connection, $NumberStudentsInst
                 if($resultNumberStudentsInstitution->num_rows > 0){
                 $index = 0;
                 while ($row = mysqli_fetch_assoc($resultNumberStudentsInstitution)){
-                    $institution_name = $row["Institution"];
-                    $numberOfStudentsInst = $row["Number_Students"];
+                    $institution_name = $row["INSTITUTION_NAME"];
+                    $numberOfStudentsInst = $row["ATTENDING"];
                     echo '<tr> 
                         <td>'.$institution_name.'</td> 
                         <td>'.$numberOfStudentsInst.'</td> 
@@ -160,7 +164,7 @@ $resultNumberStudentsInstitution = mysqli_query($connection, $NumberStudentsInst
                 }
                 }
                 else {
-    echo '<tr> <td colspan=10>Data not available</td>';
+                    echo '<tr> <td colspan=10>Data not available</td>';
 }
                 ?>
             </tr>
@@ -169,28 +173,6 @@ $resultNumberStudentsInstitution = mysqli_query($connection, $NumberStudentsInst
             <button name="Update" href = "student_generate_reports.php" class="btn login_btn">Update</button>
         </div>
     </form>
-<?php
-//View to Event table;
-
-
-if($result->num_rows > 0){
-    $index = 0;
-    while ($row = mysqli_fetch_assoc($result)){
-        $event_name = $row["Name"];
-        // echo .event_name;
-        $numberOfStudents= $row["EventID"];
-
-        echo '<tr> 
-                    <td>'.$event_name.'</td> 
-                    <td>'.$numberOfStudents.'</td> 
-              </tr>';
-    }
-
-}
-else {
-    echo '<tr> <td colspan=10>Data not available</td>';
-}
-?>
 </body>
 </html>
 
