@@ -25,7 +25,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 					</div>
             </div>
 				<div class="d-flex justify-content-center form_container">
-					<form action="student_login.php" method="post">
+					<form action="student_create_account.php" method="post">
 						<div class="form-group">
                             <label>First Name</label>
 							<input type="text" name="first_name" class="form-control input_user" >
@@ -114,9 +114,9 @@ if (isset($_POST['Submit'])){
 
     //insert to Student table;
 
-    $query = "CALL addStudent(?,?,?,?,?,?,?,?,?)";
+    $query = "CALL addStudent(?,?,?,?,?,?,?,?,?,?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ssssssssssi", $username, $password, $first_name, $last_name, $classification, $ethnicity, $employment_Status, $nationality, $gender, $age);
+    $stmt->bind_param("sssssssssi", $username, $password, $first_name, $last_name, $classification, $ethnicity, $employment_Status, $nationality, $gender, $age);
 
     if ($stmt->execute()) {
         echo "<script>alert('Account Created')</script>";
