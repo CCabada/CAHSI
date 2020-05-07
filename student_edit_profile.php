@@ -201,8 +201,8 @@ if (isset($_POST['Submit'])) {
     //insert to student table;
     #Todo Fix query
 
-    $queryUser = "UPDATE s20am_team1.student set SUsername, Classification, Ethnicity, Employment_Status, Nationality, Gender, Age, Password, FName, LName VALUES
-                VALUES '" . $username . "', '" . $classification . "', '" . $ethnicity . "','" . $employment_Status . "',  '" . $nationality . "',  '" . $gender . "', '" . $age . "', '" . $password . "','" . $first_name . "', '" . $last_name . "' where SUsername = $student;";
+    $queryUser = "UPDATE s20am_team1.student set SUsername = '" . $username . "', Classification ='" . $classification . "',  Ethnicity ='" . $ethnicity . "', Employment_Status= '" . $employment_Status . "', Nationality='" . $nationality . "', Gender='" . $gender . "', Age='" . $age . "', Password='" . $password . "', FName= '" . $first_name . "', LName= '" . $last_name . "'
+                        ";
     if ($conn->query($queryUser) === TRUE) {
         // echo "New record created successfully";
     } else {
