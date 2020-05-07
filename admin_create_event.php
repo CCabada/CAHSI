@@ -1,7 +1,12 @@
 <?php
 session_start();
 require_once('config.php');
-$admin = $_SESSION['admin_user']
+$admin = $_SESSION['admin_user']; 
+if (!$admin) {
+    header("Location: access_denied.php"); 
+}
+
+
 ?>
 
 <!DOCTYPE HTML>
@@ -30,7 +35,7 @@ $admin = $_SESSION['admin_user']
             <a class="nav-item nav-link" href="admin_create_event.php">Create Events<span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="admin_edit_event.php">Edit Events</a>
             <a class="nav-item nav-link" href="admin_student_table.php">Students</a>
-
+            <a class="nav-item nav-link" href="admin_generate_reports.php">Reports</a>
         </div>
     </div>
     <div class="pull-right">

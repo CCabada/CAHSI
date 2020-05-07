@@ -1,7 +1,12 @@
 <?php
 session_start();
 require_once('config.php');
-$admin = $_SESSION['admin_user'];
+
+$admin = $_SESSION['admin_user']; 
+if (!$admin) {
+    header("Location: access_denied.php"); 
+}
+
 $query = "SELECT * FROM s20am_team1.admin WHERE AUsername='".$admin."';";
 
 $result = $conn->query($query);
@@ -37,7 +42,7 @@ $row = $result->fetch_assoc();
             <a class="nav-item nav-link" href="admin_create_event.php">Create Events</a>
             <a class="nav-item nav-link" href="admin_edit_event.php">Edit Events</a>
             <a class="nav-item nav-link" href="admin_student_table.php">Students</a>
-
+            <a class="nav-item nav-link" href="admin_generate_reports.php">Reports</a>
         </div>
     </div>
     <div class="pull-right">
